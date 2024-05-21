@@ -2,14 +2,15 @@
     "version": 2,
     "builds": [
       {
-        "src": "index.php",
-        "use": "@vercel/php"
+        "src": "*.php",
+        "use": "@vercel/node"
       }
     ],
     "routes": [
       {
-        "src": "/(.*)",
-        "dest": "/index.php"
+        "src": "/(.+\\.php)",
+        "dest": "$1",
+        "headers": { "Content-Type": "text/html; charset=UTF-8" }
       }
     ]
   }
