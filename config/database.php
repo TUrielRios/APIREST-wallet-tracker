@@ -1,5 +1,4 @@
 <?php
-// URL de conexión proporcionada por Railway
 $db_url = "mysql://root:password@viaduct.proxy.rlwy.net:56635/railway";
 
 // Analizar la URL para obtener los detalles de conexión
