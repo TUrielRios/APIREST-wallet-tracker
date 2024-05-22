@@ -1,7 +1,7 @@
 
 <?php
-header('Content-Type: application/json');
 include '../config/database.php';
+header('Content-Type: application/json');
 
 $method = $_SERVER['REQUEST_METHOD'];
 
