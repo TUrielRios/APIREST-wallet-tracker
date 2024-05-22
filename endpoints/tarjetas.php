@@ -13,7 +13,7 @@ switch ($method) {
         $tipo = $data['tipo'];
         $saldo = $data['saldo'];
 
-        $sql = "INSERT INTO tarjetas (id_usuario, nombre, tipo, saldo) VALUES (?, ?, ?, ?, ?)";
+        $sql = "INSERT INTO tarjetas (id_usuario, nombre, tipo, saldo) VALUES (?, ?, ?, ?)";
         $stmt = $conn->prepare($sql);
         $stmt->bind_param("isssd", $id_usuario, $nombre, $tipo, $saldo);
 
