@@ -1,5 +1,4 @@
 <?php
-header('Content-Type: application/json');
 include '../config/database.php';
 
 $method = $_SERVER['REQUEST_METHOD'];
@@ -15,7 +14,7 @@ switch ($method) {
 
         $sql = "INSERT INTO tarjetas (id_usuario, nombre, tipo, saldo) VALUES (?, ?, ?, ?)";
         $stmt = $conn->prepare($sql);
-        $stmt->bind_param("isssd", $id_usuario, $nombre, $tipo, $saldo);
+        $stmt->bind_param("issd", $id_usuario, $nombre, $tipo, $saldo);
 
         if ($stmt->execute()) {
             echo json_encode(["message" => "Tarjeta creada exitosamente"]);
