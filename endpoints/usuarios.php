@@ -41,7 +41,7 @@ switch ($method) {
             if ($result->num_rows == 1) {
                 $usuario = $result->fetch_assoc();
                 if (password_verify($password, $usuario['password'])) {
-                    echo json_encode(["success" => true]);
+                    echo json_encode(["success" => true, "id_usuario" => $usuario['id_usuario']]);
                 } else {
                     echo json_encode(["success" => false, "message" => "Correo o contraseña incorrectos"]);
                 }
