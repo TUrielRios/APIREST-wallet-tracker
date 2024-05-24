@@ -17,7 +17,7 @@ switch ($method) {
         $stmt->bind_param("issd", $id_usuario, $nombre, $tipo, $saldo);
 
         if ($stmt->execute()) {
-            echo json_encode(["message" => "Tarjeta creada exitosamente"]);
+            echo json_encode(["success" => "Tarjeta creada exitosamente"]);
         } else {
             echo json_encode(["message" => "Error al crear tarjeta", "error" => $stmt->error]);
         }
