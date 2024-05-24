@@ -17,7 +17,7 @@ switch ($method) {
         $stmt->bind_param("idss", $id_usuario, $monto, $fecha, $fuente);
 
         if ($stmt->execute()) {
-            echo json_encode(["message" => "Ingreso creado exitosamente"]);
+            echo json_encode(["success" => "Ingreso creado exitosamente"]);
         } else {
             echo json_encode(["message" => "Error al crear ingreso", "error" => $stmt->error]);
         }

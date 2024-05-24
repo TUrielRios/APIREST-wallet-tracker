@@ -18,7 +18,7 @@ switch ($method) {
         $stmt->bind_param("idssi", $id_usuario, $monto, $fecha, $categoria, $id_tarjeta);
 
         if ($stmt->execute()) {
-            echo json_encode(["message" => "Gasto creado exitosamente"]);
+            echo json_encode(["success" => "Gasto creado exitosamente"]);
         } else {
             echo json_encode(["message" => "Error al crear gasto", "error" => $stmt->error]);
         }
