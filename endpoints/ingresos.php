@@ -88,7 +88,7 @@ switch ($method) {
         $stmt->bind_param("idssi", $id_usuario, $monto, $fecha, $fuente, $id_ingreso);
 
         if ($stmt->execute()) {
-            echo json_encode(["message" => "Ingreso actualizado exitosamente"]);
+            echo json_encode(["success" => "Ingreso actualizado exitosamente"]);
         } else {
             echo json_encode(["message" => "Error al actualizar ingreso", "error" => $stmt->error]);
         }
@@ -106,7 +106,7 @@ switch ($method) {
         $stmt->bind_param("i", $id_ingreso);
 
         if ($stmt->execute()) {
-            echo json_encode(["message" => "Ingreso eliminado exitosamente"]);
+            echo json_encode(["success" => "Ingreso eliminado exitosamente"]);
         } else {
             echo json_encode(["message" => "Error al eliminar ingreso", "error" => $stmt->error]);
         }

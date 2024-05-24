@@ -88,7 +88,7 @@ switch ($method) {
         $stmt->bind_param("isssdi", $id_usuario, $nombre, $tipo, $saldo, $id_tarjeta);
 
         if ($stmt->execute()) {
-            echo json_encode(["message" => "Tarjeta actualizada exitosamente"]);
+            echo json_encode(["success" => "Tarjeta actualizada exitosamente"]);
         } else {
             echo json_encode(["message" => "Error al actualizar tarjeta", "error" => $stmt->error]);
         }
@@ -106,7 +106,7 @@ switch ($method) {
         $stmt->bind_param("i", $id_tarjeta);
 
         if ($stmt->execute()) {
-            echo json_encode(["message" => "Tarjeta eliminada exitosamente"]);
+            echo json_encode(["success" => "Tarjeta eliminada exitosamente"]);
         } else {
             echo json_encode(["message" => "Error al eliminar tarjeta", "error" => $stmt->error]);
         }

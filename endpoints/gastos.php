@@ -90,7 +90,7 @@ switch ($method) {
         $stmt->bind_param("idssii", $id_usuario, $monto, $fecha, $categoria, $id_tarjeta, $id_gasto);
 
         if ($stmt->execute()) {
-            echo json_encode(["message" => "Gasto actualizado exitosamente"]);
+            echo json_encode(["success" => "Gasto actualizado exitosamente"]);
         } else {
             echo json_encode(["message" => "Error al actualizar gasto", "error" => $stmt->error]);
         }
@@ -108,7 +108,7 @@ switch ($method) {
         $stmt->bind_param("i", $id_gasto);
 
         if ($stmt->execute()) {
-            echo json_encode(["message" => "Gasto eliminado exitosamente"]);
+            echo json_encode(["success" => "Gasto eliminado exitosamente"]);
         } else {
             echo json_encode(["message" => "Error al eliminar gasto", "error" => $stmt->error]);
         }
