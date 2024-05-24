@@ -85,7 +85,7 @@ switch ($method) {
 
         $sql = "UPDATE tarjetas SET id_usuario = ?, nombre = ?, tipo = ?, saldo = ? WHERE id_tarjeta = ?";
         $stmt = $conn->prepare($sql);
-        $stmt->bind_param("isssdi", $id_usuario, $nombre, $tipo, $saldo, $id_tarjeta);
+        $stmt->bind_param("isssi", $id_usuario, $nombre, $tipo, $saldo, $id_tarjeta);
 
         if ($stmt->execute()) {
             echo json_encode(["success" => "Tarjeta actualizada exitosamente"]);
