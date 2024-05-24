@@ -7,24 +7,50 @@ $method = $_SERVER['REQUEST_METHOD'];
 
 switch ($method) {
     case 'POST':
-        // Crear un nuevo usuario
+        // Verificar si la solicitud es para registrar un nuevo usuario o para iniciar sesión
         $data = json_decode(file_get_contents("php://input"), true);
-        $nombre = $data['nombre'];
-        $email = $data['email'];
-        $password = $data['password'];
+        
+        if (isset($data['register'])) {
+            // Crear un nuevo usuario
+            $nombre = $data['nombre'];
+            $email = $data['email'];
+            $password = password_hash($data['password'], PASSWORD_DEFAULT);
 
-        $sql = "INSERT INTO usuarios (nombre, email, password) VALUES (?, ?, ?)";
-        $stmt = $conn->prepare($sql);
-        $stmt->bind_param("sss", $nombre, $email, $password);
+            $sql = "INSERT INTO usuarios (nombre, email, password) VALUES (?, ?, ?)";
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param("sss", $nombre, $email, $password);
 
-        if ($stmt->execute()) {
-            echo json_encode(["message" => "Usuario creado exitosamente"]);
+            if ($stmt->execute()) {
+                echo json_encode(["success" => true, "message" => "Usuario creado exitosamente"]);
+            } else {
+                echo json_encode(["success" => false, "message" => "Error al crear usuario", "error" => $stmt->error]);
+            }
+
+            $stmt->close();
         } else {
-            echo json_encode(["message" => "Error al crear usuario", "error" => $stmt->error]);
-        }
+            // Autenticar usuario
+            $email = $data['email'];
+            $password = $data['password'];
 
-        $stmt->close();
+            $sql = "SELECT * FROM usuarios WHERE email = ?";
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param("s", $email);
+            $stmt->execute();
+            $result = $stmt->get_result();
+
+            if ($result->num_rows == 1) {
+                $usuario = $result->fetch_assoc();
+                if (password_verify($password, $usuario['password'])) {
+                    echo json_encode(["success" => true]);
+                } else {
+                    echo json_encode(["success" => false, "message" => "Correo o contraseña incorrectos"]);
+                }
+            } else {
+                echo json_encode(["success" => false, "message" => "Correo o contraseña incorrectos"]);
+            }
+        }
         break;
+
 
     case 'GET':
         if (isset($_GET['id_usuario'])) {

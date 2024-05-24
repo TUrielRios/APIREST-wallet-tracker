@@ -306,10 +306,13 @@
             <p><strong>Método:</strong> POST</p>
             <p><strong>Ruta:</strong> /endpoints/tarjetas.php</p>
             <p><strong>Body:</strong></p>
-            <pre>{
+            <pre>
+    {
     "id_usuario": 1,
     "nombre": "Mi Tarjeta",
-     "saldo": "200"       }
+    "tipo": "débito" o "crédito",
+    "saldo": "200"       
+    }
     </pre>
         </div>
         <div class="endpoint" id="todos-tarjetas">
